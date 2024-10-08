@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do App</title>
+    <!-- Use the development build for development -->
+    <script src="https://unpkg.com/vue@3.2.0/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>To-Do App</h1>
+        <input type="text" v-model="newTask" placeholder="Add a new task">
+        <button v-on:click="addTask">Add Task</button>
+        <ul id="task-list"></ul>
+    </div>
+    <style>
+        /* Add some basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #task-list li {
+            cursor: pointer;
+        }
+    </style>
+    <script> 
+        const app = Vue.createApp({
+            data() {
+                return {
+                    newTask: '',
+                    tasks: ['Task 1', 'Task 2', 'Task 3']  // Predefined tasks
+                }
+            },
+            methods: {
+                addTask() {
+                    if (this.newTask.trim() !== '') {
+                        let newTask = document.createElement('li');
+                        newTask.innerText = this.newTask;
+                        document.getElementById('task-list').appendChild(newTask);
+                        this.newTask = '';
+                    }
+                }
+            }
+        });
+                app.mount('#app');
+
+                // 2. This is the second way to write the code
+        // let task = document.getElementById('new-task');
+        // let addTaskButton = document.getElementById('add-task');
+        // let taskList = document.getElementById('task-list');
+
+        // addTaskButton.onclick = function() {
+        //     let newTask = document.createElement('li');
+        //     newTask.textContent = task.value;
+        //     taskList.appendChild(newTask);
+        //     task.value = '';
+        // }
+        // app.mount('#app')
+
+        // // ONLY USING JS
+
+        // document.addEventListener('DOMContentLoaded', () => {
+        //     const taskInput = document.getElementById('new-task');
+        //     const addTaskButton = document.getElementById('add-task');
+        //     const taskList = document.getElementById('task-list');
+
+        //     function addTask() {
+        //         const newTask = taskInput.value.trim();
+        //         if (newTask !== '') {
+        //             const taskItem = document.createElement('li');
+        //             taskItem.textContent = newTask;
+        //             taskList.appendChild(taskItem);
+        //             taskInput.value = '';
+        //         }
+        //     }
+            
+            
+        // });
+
+    </script>
+</body>
+</html>
